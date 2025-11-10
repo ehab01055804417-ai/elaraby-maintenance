@@ -1,0 +1,19 @@
+elaraby-maintenance/
+├── package.json
+├── vercel.json
+├── vite.config.js
+├── server.js
+├── login.html
+├── index.html
+├── css/
+│   ├── style.css
+│   ├── welcome.css
+│   └── animations.css
+├── js/
+│   ├── supabase-client.js
+│   ├── db.js
+│   ├── app.js
+│   ├── excel-export.js
+│   └── welcome.js
+└── audio/
+    └── background.mp3

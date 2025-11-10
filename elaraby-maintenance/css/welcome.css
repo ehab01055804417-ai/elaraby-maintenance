@@ -1,0 +1,617 @@
+:root {
+    --primary-color: #0066cc;
+    --primary-dark: #004d99;
+    --primary-light: #4d94ff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #2c3e50;
+    --gray-color: #6c757d;
+    --border-radius: 15px;
+    --border-radius-sm: 10px;
+    --border-radius-lg: 20px;
+    --box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    --box-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.2);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+    
+    /* ألوان هادئة مستوحاة من مجموعة الشمسي */
+    --sunni-blue: #1a5276;
+    --sunni-dark-blue: #154360;
+    --sunni-light-blue: #3498db;
+    --sunni-gold: #d4ac0d;
+    --sunni-dark-gold: #b7950b;
+    --sunni-light-gold: #f7dc6f;
+    --sunni-gray: #566573;
+    --sunni-light-gray: #85929e;
+    
+    /* تدرجات الألوان */
+    --gradient-primary: linear-gradient(135deg, var(--sunni-blue) 0%, var(--sunni-dark-blue) 100%);
+    --gradient-gold: linear-gradient(135deg, var(--sunni-gold) 0%, var(--sunni-dark-gold) 100%);
+    --gradient-bg: linear-gradient(135deg, var(--sunni-blue) 0%, var(--sunni-dark-blue) 50%, #2c3e50 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: var(--gradient-bg);
+    background-attachment: fixed;
+    color: white;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow: hidden;
+    font-weight: 400;
+}
+
+/* شاشة التحميل */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loading-container {
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    animation: fadeInUp 1s ease-out;
+}
+
+.logo-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sunni-dark-blue);
+    font-size: 2rem;
+    box-shadow: var(--box-shadow);
+    animation: pulse 2s infinite, rotate 3s linear infinite;
+    border: 3px solid var(--sunni-light-gold);
+}
+
+.logo-text {
+    font-size: 3rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.welcome-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: slideInDown 1s ease-out 0.5s both;
+}
+
+.welcome-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+    animation: slideInDown 1s ease-out 0.7s both;
+}
+
+.progress-container {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--glass-border);
+    animation: slideInUp 1s ease-out 0.9s both;
+}
+
+.progress-bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-gold);
+    border-radius: 6px;
+    width: 0%;
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+}
+
+.progress-text span:first-child {
+    font-weight: 700;
+    color: var(--sunni-light-gold);
+}
+
+/* شاشة تسجيل الدخول */
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-bg);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.login-screen.active {
+    display: flex;
+    opacity: 1;
+    animation: fadeIn 1s ease-out;
+}
+
+.login-container {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(30px);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem;
+    box-shadow: var(--box-shadow-lg);
+    width: 90%;
+    max-width: 450px;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+    animation: zoomIn 0.8s ease-out;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.login-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.login-logo .logo-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    animation: none;
+}
+
+.login-logo .logo-text {
+    font-size: 2rem;
+    animation: none;
+}
+
+.login-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.login-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group label i {
+    color: var(--sunni-light-gold);
+    width: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 2px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    position: relative;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--sunni-light-gold);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 3px rgba(212, 172, 13, 0.1);
+}
+
+.form-control:focus + .form-focus-line {
+    width: 100%;
+}
+
+.form-focus-line {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-gold);
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+.btn-login {
+    background: var(--gradient-gold);
+    color: var(--sunni-dark-blue);
+    border: none;
+    padding: 1.2rem 2rem;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    box-shadow: 0 8px 25px rgba(212, 172, 13, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transition: var(--transition);
+    transform: translate(-50%, -50%);
+}
+
+.btn-login:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(212, 172, 13, 0.4);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+}
+
+.login-info {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-sm);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border-left: 4px solid var(--sunni-light-gold);
+}
+
+.login-info p {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.login-info p:last-child {
+    margin-bottom: 0;
+}
+
+.login-info p strong {
+    color: var(--sunni-light-gold);
+}
+
+/* Toast للإشعارات */
+.toast {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: var(--gradient-gold);
+    color: var(--sunni-dark-blue);
+    padding: 1.2rem 2.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-lg);
+    z-index: 1001;
+    transition: var(--transition);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toast::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.toast.error {
+    background: linear-gradient(135deg, var(--danger-color), #c82333);
+    color: white;
+}
+
+.toast.error::before {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E");
+}
+
+/* الأنيميشنات */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(212, 172, 13, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(212, 172, 13, 0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    to {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+/* أنيميشن للحقول عند الخطأ */
+.form-control.error {
+    animation: shake 0.5s ease-in-out;
+    border-color: var(--danger-color) !important;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    .loading-container {
+        width: 95%;
+    }
+    
+    .welcome-title {
+        font-size: 2rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+    
+    .logo-animation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .logo-text {
+        font-size: 2.5rem;
+    }
+    
+    .login-container {
+        padding: 2rem;
+        width: 95%;
+    }
+    
+    .login-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .progress-container {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 1.8rem;
+    }
+    
+    .logo-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .logo-text {
+        font-size: 2rem;
+    }
+    
+    .login-container {
+        padding: 1.5rem;
+    }
+    
+    .form-control {
+        padding: 1rem 1.2rem;
+    }
+    
+    .btn-login {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العربي جروب / المناشي - نظام إدارة البلاغات</title>
+    <link rel="stylesheet" href="./css/welcome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-container">
+            <div class="logo-animation">
+                <div class="logo-circle">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="logo-text">
+                    <span>AG</span>
+                </div>
+            </div>
+            <div class="loading-content">
+                <h1 class="welcome-title">العربي جروب / المناشي</h1>
+                <p class="welcome-subtitle">نظام إدارة بلاغات الصيانة</p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressPercent">0%</span>
+                        <span>جاري الاتصال بخوادم قواعد البينات -------- المساحة المتبقيه 60جيجا بايت ...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شاشة تسجيل الدخول -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-logo">
+                    <div class="logo-circle">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="logo-text">
+                        <span>AG</span>
+                    </div>
+                </div>
+                <h1>العربي جروب / المناشي</h1>
+                <p>نظام إدارة بلاغات الصيانة</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        اسم المستخدم
+                    </label>
+                    <input type="text" id="username" class="form-control" placeholder="أدخل اسم المستخدم" required>
+                    <div class="form-focus-line"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        كلمة المرور
+                    </label>
+                    <input type="password" id="password" class="form-control" placeholder="أدخل كلمة المرور" required>
+                    <div class="form-focus-line"></div>
+                </div>
+
+                <button type="submit" class="btn btn-login" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    منور المكان يا هندسه
+                </button>
+
+                <div class="login-info">
+                    <p><strong>المهندس/محمد سعيد محمد عشماوي:</strong></p>
+                    <p>المهندس سعيد محمد سعيد عشماوي</p>
+                    <p>تصميم الموقع/EHAB NASR AL-KHAWAS</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- رسائل التنبيه -->
+    <div id="toast" class="toast"></div>
+
+    <script src="./js/welcome.js"></script>
+</body>
+</html>
